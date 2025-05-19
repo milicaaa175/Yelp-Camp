@@ -1,0 +1,57 @@
+<% layout('layouts/boilerplate') %>
+<div class="row">
+    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+        <div class="card shadow mb-5">
+            <div class="card-body">
+                <h5 class="card-title text-center">New Campground</h5>
+                <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                    <section class="mb-3">
+                        <label for="title" class="form-label">Title:</label>
+                        <input type="text" class="form-control" id="title" name="campground[title]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </section>
+                    <section class="mb-3">
+                        <label for="location" class="form-label">Location:</label>
+                        <input type="text" class="form-control" id="location" name="campground[location]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </section>
+                    <!-- <section class="mb-3">
+                        <label for="image" class="form-label">Image Url:</label>
+                        <input type="text" class="form-control" id="image" name="campground[image]" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div> -->
+                    </section>
+                    <section class="mb-3">
+                        <label for="price" class="form-label">Price:</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="price-label">$</span>
+                            <input type="text" class="form-control" placeholder="0.00" id="price" name="campground[price]" required aria-describedby="price-label">
+                        </div>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </section>
+                    <section class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <textarea type="text" class="form-control" id="description" name="campground[description]" required></textarea>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </section>
+                    <section class="mb-3">
+                        <label for="images" class="form-label">Add image(s):</label>
+                        <input class="form-control" type="file" name="images" id="images" multiple>
+                    </section>
+                    <section class="d-grid">
+                        <button class="btn btn-success">Add Campground</button>
+                    </section>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
