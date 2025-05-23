@@ -1,10 +1,10 @@
 maptilersdk.config.apiKey = mapTilerToken;
 
 const map = new maptilersdk.Map({
-  container: 'map', // container's id or the HTML element in which the SDK will render the map
+  container: 'map', 
   style: maptilersdk.MapStyle.HYBRID,
-  center: campground.geometry.coordinates, // starting position [lng, lat]
-  zoom: 10 // starting zoom
+  center: campground.geometry.coordinates, 
+  zoom: 10 
 });
 
 const marker = new maptilersdk.Marker({

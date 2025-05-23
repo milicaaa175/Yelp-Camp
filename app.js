@@ -13,7 +13,6 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const localStrategy = require('passport-local');
 const User = require('./models/user');
-// const expressMongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 const MongoStore = require('connect-mongo');
 
@@ -23,7 +22,7 @@ const reviewsRoutes = require('./routes/reviews');
 const usersRoutes = require('./routes/users');
 
 const dbUrl = process.env.DB_URL;
-// const dbUrl =  'mongodb://127.0.0.1:27017/yelp-camp'
+
 mongoose.connect(dbUrl)
     .then(() => console.log("Mongo connection open!")) 
     .catch((err) => {
@@ -32,7 +31,7 @@ mongoose.connect(dbUrl)
     })
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use(express.static(path.join(__dirname, 'public')));
 app.engine('ejs', ejsMate);
@@ -59,7 +58,6 @@ const sessionOptions = {
     saveUninitialized: false,
     cookie: {
         httpOnly: true,
-        // secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -96,7 +94,7 @@ app.use(
                 "'self'",
                 "blob:",
                 "data:",
-                "https://res.cloudinary.com/dand7tase/", //SHOULD MATCH YOUR CLOUDINARY ACCOUNT! 
+                "https://res.cloudinary.com/dand7tase/",
                 "https://images.unsplash.com/",
                 "https://api.maptiler.com/",
             ],
@@ -108,8 +106,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new localStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());       // how to store the user in a session
-passport.deserializeUser(User.deserializeUser());   // how to unstore the user in a session
+passport.serializeUser(User.serializeUser());     
+passport.deserializeUser(User.deserializeUser());   
 
 app.listen(8000, () => console.log('Listening on port 8000!'));
 
@@ -119,8 +117,6 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     next();
 });
-
-// app.use(expressMongoSanitize());
 
 app.use('/campgrounds', campgroundsRoutes);
 app.use('/campgrounds/:id/reviews', reviewsRoutes);
